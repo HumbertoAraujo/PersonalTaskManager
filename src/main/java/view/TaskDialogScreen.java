@@ -4,18 +4,28 @@
  */
 package view;
 
+import controller.TaskController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import model.Project;
+import model.Task;
+
 /**
  *
  * @author humberto
  */
 public class TaskDialogScreen extends javax.swing.JDialog {
-
-    /**
-     * Creates new form TaskDialogScreen
-     */
+    
+    TaskController controller;
+    Project project;
+    
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        controller = new TaskController();
+        
     }
 
     /**
@@ -27,175 +37,220 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        jPanelToolBar = new javax.swing.JPanel();
+        jLabelToolBarTitle = new javax.swing.JLabel();
+        jLabelToolBarSave = new javax.swing.JLabel();
+        jPanelTask = new javax.swing.JPanel();
+        jLabelName = new javax.swing.JLabel();
+        jTextFieldName = new javax.swing.JTextField();
+        jLabelDescription = new javax.swing.JLabel();
+        jScrollPaneDescription = new javax.swing.JScrollPane();
+        jTextAreaDescription = new javax.swing.JTextArea();
+        jLabelDeadline = new javax.swing.JLabel();
+        jLabelNotes = new javax.swing.JLabel();
+        jScrollPaneNotes = new javax.swing.JScrollPane();
+        jTextAreaNotes = new javax.swing.JTextArea();
+        jFormattedTextFieldDeadline = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(191, 219, 247));
 
-        jPanel1.setBackground(new java.awt.Color(17, 83, 99));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelToolBar.setBackground(new java.awt.Color(17, 83, 99));
+        jPanelToolBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jLabel1.setText(" Tarefa");
+        jLabelToolBarTitle.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelToolBarTitle.setText(" Tarefa");
 
-        jLabel2.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconCheck.png"))); // NOI18N
+        jLabelToolBarSave.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelToolBarSave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelToolBarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconCheck.png"))); // NOI18N
+        jLabelToolBarSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelToolBarSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelToolBarSaveMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelToolBarLayout = new javax.swing.GroupLayout(jPanelToolBar);
+        jPanelToolBar.setLayout(jPanelToolBarLayout);
+        jPanelToolBarLayout.setHorizontalGroup(
+            jPanelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelToolBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelToolBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(jLabelToolBarSave)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPanelToolBarLayout.setVerticalGroup(
+            jPanelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelToolBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelToolBarSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelToolBarLayout.createSequentialGroup()
                         .addGap(0, 7, Short.MAX_VALUE)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabelToolBarTitle)))
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(191, 219, 247));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelTask.setBackground(new java.awt.Color(191, 219, 247));
+        jPanelTask.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel5.setBackground(new java.awt.Color(191, 219, 247));
-        jLabel5.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(17, 83, 99));
-        jLabel5.setText("Nome");
-        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelName.setBackground(new java.awt.Color(191, 219, 247));
+        jLabelName.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelName.setForeground(new java.awt.Color(17, 83, 99));
+        jLabelName.setText("Nome");
+        jLabelName.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jTextField3.setBackground(new java.awt.Color(191, 219, 247));
-        jTextField3.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(17, 83, 99));
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
+        jTextFieldName.setBackground(new java.awt.Color(191, 219, 247));
+        jTextFieldName.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jTextFieldName.setForeground(new java.awt.Color(17, 83, 99));
+        jTextFieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
 
-        jLabel6.setBackground(new java.awt.Color(191, 219, 247));
-        jLabel6.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(17, 83, 99));
-        jLabel6.setText("Detalhamento");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelDescription.setBackground(new java.awt.Color(191, 219, 247));
+        jLabelDescription.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelDescription.setForeground(new java.awt.Color(17, 83, 99));
+        jLabelDescription.setText("Detalhamento");
+        jLabelDescription.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jScrollPane3.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
+        jScrollPaneDescription.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
 
-        jTextArea3.setBackground(new java.awt.Color(191, 219, 247));
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(17, 83, 99));
-        jTextArea3.setRows(5);
-        jTextArea3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
-        jScrollPane3.setViewportView(jTextArea3);
+        jTextAreaDescription.setBackground(new java.awt.Color(191, 219, 247));
+        jTextAreaDescription.setColumns(20);
+        jTextAreaDescription.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jTextAreaDescription.setForeground(new java.awt.Color(17, 83, 99));
+        jTextAreaDescription.setRows(5);
+        jTextAreaDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
+        jScrollPaneDescription.setViewportView(jTextAreaDescription);
 
-        jLabel7.setBackground(new java.awt.Color(191, 219, 247));
-        jLabel7.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(17, 83, 99));
-        jLabel7.setText("Prazo");
-        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelDeadline.setBackground(new java.awt.Color(191, 219, 247));
+        jLabelDeadline.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelDeadline.setForeground(new java.awt.Color(17, 83, 99));
+        jLabelDeadline.setText("Prazo");
+        jLabelDeadline.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
-        jTextField4.setBackground(new java.awt.Color(191, 219, 247));
-        jTextField4.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(17, 83, 99));
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
+        jLabelNotes.setBackground(new java.awt.Color(191, 219, 247));
+        jLabelNotes.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelNotes.setForeground(new java.awt.Color(17, 83, 99));
+        jLabelNotes.setText("Notas");
+        jLabelNotes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelNotes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel8.setBackground(new java.awt.Color(191, 219, 247));
-        jLabel8.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(17, 83, 99));
-        jLabel8.setText("Notas");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jScrollPaneNotes.setBackground(new java.awt.Color(191, 219, 247));
+        jScrollPaneNotes.setForeground(new java.awt.Color(17, 83, 99));
+        jScrollPaneNotes.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
 
-        jScrollPane4.setBackground(new java.awt.Color(191, 219, 247));
-        jScrollPane4.setForeground(new java.awt.Color(17, 83, 99));
-        jScrollPane4.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
+        jTextAreaNotes.setBackground(new java.awt.Color(191, 219, 247));
+        jTextAreaNotes.setColumns(20);
+        jTextAreaNotes.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jTextAreaNotes.setForeground(new java.awt.Color(17, 83, 99));
+        jTextAreaNotes.setRows(5);
+        jTextAreaNotes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
+        jScrollPaneNotes.setViewportView(jTextAreaNotes);
 
-        jTextArea4.setBackground(new java.awt.Color(191, 219, 247));
-        jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
-        jTextArea4.setForeground(new java.awt.Color(17, 83, 99));
-        jTextArea4.setRows(5);
-        jTextArea4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
-        jScrollPane4.setViewportView(jTextArea4);
+        jFormattedTextFieldDeadline.setBackground(new java.awt.Color(191, 219, 247));
+        jFormattedTextFieldDeadline.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
+        jFormattedTextFieldDeadline.setForeground(new java.awt.Color(17, 83, 99));
+        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yy"))));
+        jFormattedTextFieldDeadline.setSelectedTextColor(new java.awt.Color(225, 229, 242));
+        jFormattedTextFieldDeadline.setSelectionColor(new java.awt.Color(17, 83, 99));
+        jFormattedTextFieldDeadline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldDeadlineActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextField3)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField4)
-                    .addComponent(jScrollPane4))
+        javax.swing.GroupLayout jPanelTaskLayout = new javax.swing.GroupLayout(jPanelTask);
+        jPanelTask.setLayout(jPanelTaskLayout);
+        jPanelTaskLayout.setHorizontalGroup(
+            jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTextFieldName)
+            .addComponent(jLabelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelNotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelTaskLayout.createSequentialGroup()
+                .addGroup(jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                    .addComponent(jLabelDeadline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneNotes))
                 .addContainerGap())
+            .addComponent(jFormattedTextFieldDeadline)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel5)
+        jPanelTaskLayout.setVerticalGroup(
+            jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTaskLayout.createSequentialGroup()
+                .addComponent(jLabelName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addComponent(jLabelDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(jLabelDeadline)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextFieldDeadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addComponent(jLabelNotes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jScrollPaneNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addGap(8, 8, 8))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jFormattedTextFieldDeadlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDeadlineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldDeadlineActionPerformed
+
+    private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
+        
+        try {
+            
+            Task task = new Task();
+            task.setIdProject(project.getId());
+            task.setName(jTextFieldName.getText());
+            task.setDescription(jTextAreaDescription.getText());
+            task.setNotes(jTextAreaNotes.getText());
+            task.setIsCompletd(false);
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date deadline = null;
+            
+            deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
+            
+            task.setDeadline(deadline);
+            controller.save(task);
+            JOptionPane.showMessageDialog(rootPane, "Tarefa Salva com Sucesso!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+        
+        this.dispose();
+        
+    }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
     /**
      * @param args the command line arguments
@@ -240,19 +295,24 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDeadline;
+    private javax.swing.JLabel jLabelDeadline;
+    private javax.swing.JLabel jLabelDescription;
+    private javax.swing.JLabel jLabelName;
+    private javax.swing.JLabel jLabelNotes;
+    private javax.swing.JLabel jLabelToolBarSave;
+    private javax.swing.JLabel jLabelToolBarTitle;
+    private javax.swing.JPanel jPanelTask;
+    private javax.swing.JPanel jPanelToolBar;
+    private javax.swing.JScrollPane jScrollPaneDescription;
+    private javax.swing.JScrollPane jScrollPaneNotes;
+    private javax.swing.JTextArea jTextAreaDescription;
+    private javax.swing.JTextArea jTextAreaNotes;
+    private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+    
 }

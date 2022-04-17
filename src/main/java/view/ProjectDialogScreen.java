@@ -14,17 +14,14 @@ import model.Project;
  */
 public class ProjectDialogScreen extends javax.swing.JDialog {
 
-    
     ProjectController controller;
-    
-    
+
     public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         controller = new ProjectController();
-        
-        
+
     }
 
     /**
@@ -57,6 +54,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
         jLabelToolbarsave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelToolbarsave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconCheck.png"))); // NOI18N
+        jLabelToolbarsave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelToolbarsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelToolbarsaveMouseClicked(evt);
@@ -177,17 +175,24 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
     private void jLabelToolbarsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolbarsaveMouseClicked
         // TO add your handling code here:
-        
-        Project project = new Project();
-        project.setName(jTextFieldName.getText());
-        project.setDescription(jTextAreaDescription.getText());
-        
-        controller.save(project);
-        JOptionPane.showMessageDialog(rootPane, "Projeto Salvo com sucesso");
-        
-        
+
+        try {
+
+            Project project = new Project();
+            project.setName(jTextFieldName.getText());
+            project.setDescription(jTextAreaDescription.getText());
+
+            controller.save(project);
+            JOptionPane.showMessageDialog(rootPane, "Projeto Salvo com Sucesso");
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+
+        }
+
         this.dispose();
-        
+
     }//GEN-LAST:event_jLabelToolbarsaveMouseClicked
 
     /**
@@ -201,7 +206,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Java swing".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

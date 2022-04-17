@@ -4,8 +4,18 @@
  */
 package view;
 
+import controller.ProjectController;
+import controller.TaskController;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.net.URI;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import model.Project;
 
 /**
  *
@@ -13,12 +23,16 @@ import java.awt.Font;
  */
 public class MainScreen extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainScreen
-     */
+    ProjectController projectController;
+    TaskController taskcontroller;
+    
+    DefaultListModel projectModel;
+    
     public MainScreen() {
         initComponents();
         decorateTableTask();
+        initDataController();
+        initComponentsModel();
     }
 
     /**
@@ -107,6 +121,12 @@ public class MainScreen extends javax.swing.JFrame {
 
         jLabelToolBarSign.setFont(new java.awt.Font("Binary X CHR BRK", 0, 8)); // NOI18N
         jLabelToolBarSign.setText("Desenvolvido by Humberto Araújo");
+        jLabelToolBarSign.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelToolBarSign.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelToolBarSignMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelToolBarLayout = new javax.swing.GroupLayout(jPanelToolBar);
         jPanelToolBar.setLayout(jPanelToolBarLayout);
@@ -142,6 +162,7 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelProjectsTitle.setText("Projetos");
 
         jLabelProjectsAdds.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAdd.png"))); // NOI18N
+        jLabelProjectsAdds.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelProjectsAdds.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelProjectsAddsMouseClicked(evt);
@@ -155,7 +176,7 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanelProjectsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelProjectsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelProjectsAdds, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -176,6 +197,12 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelTasksTitle.setText("Tarefas");
 
         jLabelTasksAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconAdd.png"))); // NOI18N
+        jLabelTasksAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabelTasksAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTasksAddMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelTasksLayout = new javax.swing.GroupLayout(jPanelTasks);
         jPanelTasks.setLayout(jPanelTasksLayout);
@@ -205,12 +232,8 @@ public class MainScreen extends javax.swing.JFrame {
         jListProjects.setBackground(new java.awt.Color(191, 219, 247));
         jListProjects.setFont(new java.awt.Font("Chandas", 1, 14)); // NOI18N
         jListProjects.setForeground(new java.awt.Color(17, 83, 99));
-        jListProjects.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jListProjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListProjects.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jListProjects.setSelectionBackground(new java.awt.Color(17, 83, 99));
         jListProjects.setSelectionForeground(new java.awt.Color(225, 229, 242));
         jScrollPaneProjects.setViewportView(jListProjects);
@@ -266,6 +289,7 @@ public class MainScreen extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableTasks.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTableTasks.setGridColor(new java.awt.Color(17, 83, 99));
         jTableTasks.setRowHeight(50);
         jTableTasks.setSelectionBackground(new java.awt.Color(31, 122, 140));
@@ -317,7 +341,37 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
         projectDialogScreen.setVisible(true);
+        
+        projectDialogScreen.addWindowListener(new WindowAdapter() {
+            
+            public void windowClosed(WindowEvent e){
+                loadProjects();
+                
+            }
+        });
+        
     }//GEN-LAST:event_jLabelProjectsAddsMouseClicked
+
+    private void jLabelTasksAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksAddMouseClicked
+        // TODO add your handling code here:
+        
+        TaskDialogScreen taskdialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled);
+        //taskdialogScreen.setProject(null);
+        taskdialogScreen.setVisible(true);
+        
+    }//GEN-LAST:event_jLabelTasksAddMouseClicked
+
+    private void jLabelToolBarSignMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSignMouseClicked
+        // TODO add your handling code here:
+        
+        try{
+            URI link = new URI("www.google.com");
+            Desktop.getDesktop().browse(link);
+        }catch(Exception erro){
+            JOptionPane.showMessageDialog(rootPane, "Não foi possível abrir o site, erro em tratamento.");
+        }
+        
+    }//GEN-LAST:event_jLabelToolBarSignMouseClicked
 
     /**
      * @param args the command line arguments
@@ -386,6 +440,38 @@ public class MainScreen extends javax.swing.JFrame {
         //Criando um sort automático para as colunas da table tasks.
         jTableTasks.setAutoCreateRowSorter(true);
         
+        
+    }
+    
+    public void initDataController(){
+        
+        projectController = new ProjectController();
+        taskcontroller = new TaskController();
+        
+    }
+    
+    public void initComponentsModel() {
+    
+        projectModel = new DefaultListModel();
+        loadProjects();
+                
+}
+    
+    public void loadProjects(){
+        
+        List<Project> projects = projectController.getAll();
+        
+        projectModel.clear();
+        
+        for (int i = 0; i < projects.size(); i++) {
+            
+            Project project = projects.get(i);
+            
+            projectModel.addElement(project);
+            
+        }
+        
+        jListProjects.setModel(projectModel);
         
     }
     
