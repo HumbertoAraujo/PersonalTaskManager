@@ -58,7 +58,8 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jPanelToolBar.setBackground(new java.awt.Color(17, 83, 99));
         jPanelToolBar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabelToolBarTitle.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
+        jLabelToolBarTitle.setFont(new java.awt.Font("Chandas", 1, 18)); // NOI18N
+        jLabelToolBarTitle.setForeground(new java.awt.Color(225, 229, 242));
         jLabelToolBarTitle.setText(" Tarefa");
 
         jLabelToolBarSave.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
@@ -89,7 +90,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 .addGroup(jPanelToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelToolBarSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelToolBarLayout.createSequentialGroup()
-                        .addGap(0, 7, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabelToolBarTitle)))
                 .addContainerGap())
         );
@@ -114,6 +115,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jLabelDescription.setText("Detalhamento");
         jLabelDescription.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        jScrollPaneDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
         jScrollPaneDescription.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
 
         jTextAreaDescription.setBackground(new java.awt.Color(191, 219, 247));
@@ -127,7 +129,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jLabelDeadline.setBackground(new java.awt.Color(191, 219, 247));
         jLabelDeadline.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
         jLabelDeadline.setForeground(new java.awt.Color(17, 83, 99));
-        jLabelDeadline.setText("Prazo");
+        jLabelDeadline.setText("Prazo dd/MM/aaaa");
         jLabelDeadline.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
         jLabelNotes.setBackground(new java.awt.Color(191, 219, 247));
@@ -166,16 +168,16 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jPanelTaskLayout.setHorizontalGroup(
             jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextFieldName)
             .addComponent(jLabelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabelNotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanelTaskLayout.createSequentialGroup()
-                .addGroup(jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
-                    .addComponent(jLabelDeadline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneNotes))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTaskLayout.createSequentialGroup()
+                .addGroup(jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jFormattedTextFieldDeadline, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneDescription, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                    .addComponent(jLabelDeadline, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneNotes, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldName, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
-            .addComponent(jFormattedTextFieldDeadline)
         );
         jPanelTaskLayout.setVerticalGroup(
             jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +196,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelNotes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addComponent(jScrollPaneNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addGap(8, 8, 8))
         );
 
@@ -226,8 +228,15 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
         
-        try {
+        
             
+            if (jTextFieldName.getText().isEmpty() || jFormattedTextFieldDeadline.getText().isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Tarefa não salva, pois possui campos vazios!");
+                
+                
+            } else {
+            
+            try {
             Task task = new Task();
             task.setIdProject(project.getId());
             task.setName(jTextFieldName.getText());
@@ -243,13 +252,14 @@ public class TaskDialogScreen extends javax.swing.JDialog {
             task.setDeadline(deadline);
             controller.save(task);
             JOptionPane.showMessageDialog(rootPane, "Tarefa Salva com Sucesso!");
+            this.dispose();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
         
-        this.dispose();
         
+        }
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
     /**

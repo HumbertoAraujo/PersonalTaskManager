@@ -92,7 +92,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         jTextFieldName.setBackground(new java.awt.Color(191, 219, 247));
         jTextFieldName.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
         jTextFieldName.setForeground(new java.awt.Color(17, 83, 99));
-        jTextFieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
+        jTextFieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
         jTextFieldName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNameActionPerformed(evt);
@@ -110,7 +110,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         jTextAreaDescription.setFont(new java.awt.Font("Chandas", 0, 14)); // NOI18N
         jTextAreaDescription.setForeground(new java.awt.Color(17, 83, 99));
         jTextAreaDescription.setRows(5);
-        jTextAreaDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99)));
+        jTextAreaDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
         jScrollPane1.setViewportView(jTextAreaDescription);
 
         javax.swing.GroupLayout jPanelProjectLayout = new javax.swing.GroupLayout(jPanelProject);
@@ -143,7 +143,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -177,6 +177,8 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
         // TO add your handling code here:
 
         try {
+            
+            if(!jTextFieldName.getText().equals("")) {
 
             Project project = new Project();
             project.setName(jTextFieldName.getText());
@@ -184,14 +186,20 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
 
             controller.save(project);
             JOptionPane.showMessageDialog(rootPane, "Projeto Salvo com Sucesso");
+            this.dispose();
 
+            } else {
+                
+                JOptionPane.showMessageDialog(rootPane, "O Projeto não foi salvo, pois o campo nome não foi preenchido!");
+            }
+            
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
 
         }
 
-        this.dispose();
+        
 
     }//GEN-LAST:event_jLabelToolbarsaveMouseClicked
 

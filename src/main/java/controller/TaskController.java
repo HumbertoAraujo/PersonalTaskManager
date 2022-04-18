@@ -30,13 +30,13 @@ public class TaskController {
 
         try {
 
-            //Estabelecendo a conexão com o banco de dados.
+            //Estabelecendo a conexï¿½o com o banco de dados.
             connection = ConnectionFactory.getConnection();
 
             //Preparando o statement.
             statement = connection.prepareStatement(sql);
 
-            //Setando os valores das interrogações da string.
+            //Setando os valores das interrogaï¿½ï¿½es da string.
             statement.setInt(1, task.getIdProject());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
@@ -51,7 +51,7 @@ public class TaskController {
             //Tratamento de erro.
             throw new RuntimeException("Erro ao salvar a tarefa " + ex.getMessage(), ex);
         } finally {
-            //Fechando as conexões.
+            //Fechando as conexï¿½es.
             ConnectionFactory.closeConnection(connection, statement);
         }
 
@@ -66,7 +66,7 @@ public class TaskController {
 
         try {
 
-            //Estabelecendo a conexão com o banco de dados.
+            //Estabelecendo a conexï¿½o com o banco de dados.
             connection = ConnectionFactory.getConnection();
 
             //Preparando a query.
@@ -94,7 +94,7 @@ public class TaskController {
 
     }
 
-    public void removeById(int taskId) throws SQLException {
+    public void removeById(int taskId) {
 
         String sql = "DELETE FROM tasks WHERE id = ?";
 
@@ -102,7 +102,7 @@ public class TaskController {
         PreparedStatement statement = null;
 
         try {
-            //Estabelecendo a conexão com o banco de dados.
+            //Estabelecendo a conexï¿½o com o banco de dados.
             connection = ConnectionFactory.getConnection();
 
             //Preparando a query
@@ -119,7 +119,7 @@ public class TaskController {
             throw new RuntimeException("Erro ao deletar a tarefa");
 
         } finally {
-            //Fechando as conexões.
+            //Fechando as conexï¿½es.
             ConnectionFactory.closeConnection(connection, statement);
         }
 
@@ -133,12 +133,12 @@ public class TaskController {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
-        //Lista de tarefas que será devolvida quando a chamada do método acontecer.
+        //Lista de tarefas que serï¿½ devolvida quando a chamada do mï¿½todo acontecer.
         List<Task> tasks = new ArrayList<Task>();
 
         try {
 
-            //Estabelecendo a conexão com o banco de dados.
+            //Estabelecendo a conexï¿½o com o banco de dados.
             connection = ConnectionFactory.getConnection();
 
             //Preparando a query
@@ -147,7 +147,7 @@ public class TaskController {
             //Setando o valor que corresponde ao filtro de busca.
             statement.setInt(1, idProject);
 
-            //Valor retornado pela execução da query.
+            //Valor retornado pela execuï¿½ï¿½o da query.
             resultSet = statement.executeQuery();
 
             //Enquanto houverem valores a serem percorridos no menu resultSet.
@@ -173,7 +173,7 @@ public class TaskController {
             throw new RuntimeException("Erro ao inserir a tarefa " + ex.getMessage(), ex);
 
         } finally {
-            //Fechando as conexões.
+            //Fechando as conexï¿½es.
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
 

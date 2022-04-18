@@ -154,7 +154,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabelDescription" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="178" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="174" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -185,7 +185,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder>
+                <LineBorder thickness="3">
                   <Color PropertyName="color" blue="63" green="53" red="11" type="rgb"/>
                 </LineBorder>
               </Border>
@@ -237,7 +237,7 @@
                 <Property name="rows" type="int" value="5"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder>
+                    <LineBorder thickness="3">
                       <Color PropertyName="color" blue="63" green="53" red="11" type="rgb"/>
                     </LineBorder>
                   </Border>
