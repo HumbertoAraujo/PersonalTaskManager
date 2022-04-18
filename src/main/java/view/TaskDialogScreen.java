@@ -16,16 +16,16 @@ import model.Task;
  * @author humberto
  */
 public class TaskDialogScreen extends javax.swing.JDialog {
-    
+
     TaskController controller;
     Project project;
-    
+
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         controller = new TaskController();
-        
+
     }
 
     /**
@@ -227,38 +227,34 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     }//GEN-LAST:event_jFormattedTextFieldDeadlineActionPerformed
 
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
-        
-        
-            
-            if (jTextFieldName.getText().isEmpty() || jFormattedTextFieldDeadline.getText().isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "Tarefa não salva, pois possui campos vazios!");
-                
-                
-            } else {
-            
+
+        if (jTextFieldName.getText().isEmpty() || jFormattedTextFieldDeadline.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Tarefa não salva, pois possui campos vazios!");
+
+        } else {
+
             try {
-            Task task = new Task();
-            task.setIdProject(project.getId());
-            task.setName(jTextFieldName.getText());
-            task.setDescription(jTextAreaDescription.getText());
-            task.setNotes(jTextAreaNotes.getText());
-            task.setIsCompletd(false);
-            
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date deadline = null;
-            
-            deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
-            
-            task.setDeadline(deadline);
-            controller.save(task);
-            JOptionPane.showMessageDialog(rootPane, "Tarefa Salva com Sucesso!");
-            this.dispose();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
-        }
-        
-        
+                Task task = new Task();
+                task.setIdProject(project.getId());
+                task.setName(jTextFieldName.getText());
+                task.setDescription(jTextAreaDescription.getText());
+                task.setNotes(jTextAreaNotes.getText());
+                task.setIsCompletd(false);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date deadline = null;
+
+                deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
+
+                task.setDeadline(deadline);
+                controller.save(task);
+                JOptionPane.showMessageDialog(rootPane, "Tarefa Salva com Sucesso!");
+                this.dispose();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            }
+
         }
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
@@ -324,5 +320,5 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     public void setProject(Project project) {
         this.project = project;
     }
-    
+
 }

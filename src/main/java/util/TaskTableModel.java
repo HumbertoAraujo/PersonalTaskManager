@@ -14,11 +14,10 @@ import model.Task;
  *
  * @author humberto
  */
-public class TaskTableModel extends AbstractTableModel{
-    
-    String[] columns = {"Nome", "Detalhamento", "Prazo", "Tarefa Finalizada", "Editar", "Excluir" };
+public class TaskTableModel extends AbstractTableModel {
+
+    String[] columns = {"Nome", "Detalhamento", "Prazo", "Tarefa Finalizada", "Editar", "Excluir"};
     List<Task> tasks = new ArrayList<>();
-    
 
     @Override
     public int getRowCount() {
@@ -28,55 +27,54 @@ public class TaskTableModel extends AbstractTableModel{
     @Override
     public int getColumnCount() {
         return columns.length;
-        
+
     }
-    
+
     @Override
-    public String getColumnName(int columnIndex){
+    public String getColumnName(int columnIndex) {
         return columns[columnIndex];
     }
 
-    public boolean isCellEditable(int rowIndex, int columnIndex){
-       return columnIndex ==3;      
-            
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return columnIndex == 3;
+
     }
-    
+
     @Override
-    public Class<?> getColumnClass(int columnIndex){
-        if(tasks.isEmpty()){
+    public Class<?> getColumnClass(int columnIndex) {
+        if (tasks.isEmpty()) {
             return Object.class;
         }
         return this.getValueAt(0, columnIndex).getClass();
-        
-        
+
     }
-    
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
-            case 0: 
-                return tasks.get(rowIndex).getName();              
+            case 0:
+                return tasks.get(rowIndex).getName();
             case 1:
-                return tasks.get(rowIndex).getDescription(); 
+                return tasks.get(rowIndex).getDescription();
             case 2:
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                return dateFormat.format(tasks.get(rowIndex).getDeadline());           
+                return dateFormat.format(tasks.get(rowIndex).getDeadline());
             case 3:
-                return tasks.get(rowIndex).isIsCompletd(); 
+                return tasks.get(rowIndex).isIsCompletd();
             case 4:
                 return "";
             case 5:
                 return "";
             default:
                 return "Dados não encontrados!";
-            
-                
+
         }
     }
-    @Override    
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex){
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         tasks.get(rowIndex).setIsCompletd((boolean) aValue);
-        
+
     }
 
     public String[] getColumns() {
@@ -90,7 +88,5 @@ public class TaskTableModel extends AbstractTableModel{
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
-    
-    
-    
+
 }

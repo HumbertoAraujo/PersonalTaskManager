@@ -13,13 +13,13 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author humberto
  */
-public class ButtonColumnCellRederer extends DefaultTableCellRenderer{
-    
+public class ButtonColumnCellRederer extends DefaultTableCellRenderer {
+
     private String buttonType;
-    
-    public ButtonColumnCellRederer(String buttonType){
+
+    public ButtonColumnCellRederer(String buttonType) {
         this.buttonType = buttonType;
-        
+
     }
 
     public String getButtonType() {
@@ -29,20 +29,19 @@ public class ButtonColumnCellRederer extends DefaultTableCellRenderer{
     public void setButtonType(String buttonType) {
         this.buttonType = buttonType;
     }
-    
+
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int col) {
-        
+
         JLabel label = (JLabel) super.getTableCellRendererComponent(table,
                 value, isSelected, hasFocus, row, col);
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setVerticalAlignment(JLabel.CENTER);
         label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/" + buttonType + ".png")));
-        
+
         return label;
-        
-        
+
     }
-    
+
 }
