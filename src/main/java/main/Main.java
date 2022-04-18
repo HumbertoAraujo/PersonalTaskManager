@@ -5,8 +5,6 @@
  */
 package main;
 
-import controller.ProjectController;
-import model.Project;
 
 /**
  *
@@ -16,13 +14,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-         
-        ProjectController projectController = new ProjectController();
-       
-        Project project = new Project();
-        project.setName("Projeto 2");
-        project.setDescription("Description teste");
-        projectController.save(project);
+
         
         
         
