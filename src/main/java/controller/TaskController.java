@@ -72,7 +72,7 @@ public class TaskController {
             //Preparando a query.
             statement = connection.prepareStatement(sql);
 
-            //Setano os valores do statement.
+            //Setando os valores do statement.
             statement.setInt(1, task.getIdProject());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());

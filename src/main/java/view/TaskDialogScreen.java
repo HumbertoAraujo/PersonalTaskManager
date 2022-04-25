@@ -154,7 +154,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jFormattedTextFieldDeadline.setBackground(new java.awt.Color(191, 219, 247));
         jFormattedTextFieldDeadline.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(17, 83, 99), 3));
         jFormattedTextFieldDeadline.setForeground(new java.awt.Color(17, 83, 99));
-        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yy"))));
+        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         jFormattedTextFieldDeadline.setSelectedTextColor(new java.awt.Color(225, 229, 242));
         jFormattedTextFieldDeadline.setSelectionColor(new java.awt.Color(17, 83, 99));
         jFormattedTextFieldDeadline.addActionListener(new java.awt.event.ActionListener() {
